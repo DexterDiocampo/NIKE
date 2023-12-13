@@ -28,6 +28,9 @@ function updateCheckout() {
     });
 
     totalAmountSpan.textContent = `Total Amount: ₱${totalAmount.toFixed(2)}`;
+
+    const buyNowButton = document.querySelector('.buy-now-btn');
+    buyNowButton.disabled = cartItems.length === 0;
 }
 
 function goBack() {
@@ -35,8 +38,12 @@ function goBack() {
 }
 
 function buyNow() {
-
     const buyNowButton = document.querySelector('.buy-now-btn');
+    
+    if (buyNowButton.disabled) {
+        return;
+    }
+
     buyNowButton.textContent = 'Back';
     buyNowButton.onclick = goBack;
 
@@ -56,8 +63,9 @@ function buyNow() {
             buyNowButton.textContent = 'Buy Now';
             buyNowButton.onclick = buyNow;
         }
-    }, 2000); 
+    }, 2000);
 }
+
 function validateEmail() {
     return true;
 }
